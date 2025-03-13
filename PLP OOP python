@@ -1,0 +1,35 @@
+# Parent class (Smartphone)
+class Smartphone:
+    def __init__(self, brand, model, price):
+        self.brand = brand
+        self.model = model
+        self.__price = price  # Encapsulated attribute
+
+    def specs(self):
+        return f"{self.brand} {self.model} costs ${self.__price}."
+
+    def call(self, number):
+        return f"Calling {number} from {self.model}..."
+
+    # Getter for private attribute
+    def get_price(self):
+        return self.__price
+
+# Child class (GamingPhone) inherits from Smartphone
+class GamingPhone(Smartphone):
+    def __init__(self, brand, model, price, gpu):
+        super().__init__(brand, model, price)
+        self.gpu = gpu
+
+    # Overriding specs method to include GPU
+    def specs(self):
+        return f"{self.brand} {self.model} (Gaming Edition) with {self.gpu} GPU costs ${self.get_price()}."
+
+# Creating objects
+phone1 = Smartphone("Samsung", "Galaxy S24", 1200)
+gaming_phone = GamingPhone("ASUS", "ROG Phone 8", 1500, "Adreno 740")
+
+# Testing methods
+print(phone1.specs())  # Output: Samsung Galaxy S24 costs $1200.
+print(gaming_phone.specs())  # Output: ASUS ROG Phone 8 (Gaming Edition) with Adreno 740 GPU costs $1500.
+print(gaming_phone.call("+1234567890"))  # Output: Calling +1234567890 from ROG Phone 8...
